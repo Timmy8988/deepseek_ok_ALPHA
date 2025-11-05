@@ -1,0 +1,15 @@
+{
+  "test_mode": true,
+  "leverage": 10,
+  "timeframe": "5m",
+  "base_usdt_amount": 100,
+  "last_updated": "2025-10-29T12:00:00",
+  "stop_loss_pct": 2.0,
+  "low_trail_stop_loss_pct": 0.2,
+  "trail_stop_loss_pct": 0.2,
+  "higher_trail_stop_loss_pct": 0.25,
+  "low_trail_profit_threshold": 0.3,
+  "first_trail_profit_threshold": 1.0,
+  "second_trail_profit_threshold": 3.0
+}
+

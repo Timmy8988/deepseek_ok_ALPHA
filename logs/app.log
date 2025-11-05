@@ -1,0 +1,509 @@
+2025-10-28 16:55:31,800 - engineio.server - INFO - Server initialized for eventlet.
+2025-10-28 17:08:02,259 - engineio.server - INFO - Server initialized for threading.
+2025-10-31 17:48:51,680 - engineio.server - INFO - Server initialized for threading.
+2025-10-31 17:48:52,365 - __main__ - INFO - DeepSeek¿Í»§¶ËÒÑ³õÊ¼»¯ (API Key: sk-c009a...)
+2025-10-31 17:48:52,374 - __main__ - INFO - OKX½»Ò×ËùÒÑ³õÊ¼»¯ (API Key: 98029358...)
+2025-10-31 17:48:52,376 - __main__ - INFO - ==================================================
+2025-10-31 17:48:52,376 - __main__ - INFO - ¼ÓÃÜ»õ±Ò½»Ò×»úÆ÷ÈËÆô¶¯ÖÐ...
+2025-10-31 17:48:52,376 - __main__ - INFO - Ö§³Ö½»Ò×Ëù: OKX (½öÖ§³Ö)
+2025-10-31 17:48:52,376 - __main__ - INFO - ½»Ò×¶Ô: BTC/USDT:USDT (ÓÀÐøºÏÔ¼)
+2025-10-31 17:48:52,376 - __main__ - INFO - ==================================================
+2025-10-31 17:49:02,399 - __main__ - ERROR - OKX½»Ò×ËùÉèÖÃÊ§°Ü: okx GET https://www.okx.com/api/v5/asset/currencies
+2025-10-31 17:49:02,399 - __main__ - ERROR - Çë¼ì²éOKX APIÃÜÔ¿ÊÇ·ñÕýÈ·£¬ÒÔ¼°ÊÇ·ñÉèÖÃÁËIP°×Ãûµ¥
+2025-10-31 17:49:02,399 - __main__ - ERROR - OKX½»Ò×Ëù³õÊ¼»¯Ê§°Ü£¬Çë¼ì²éAPIÅäÖÃ
+2025-10-31 17:49:02,399 - __main__ - ERROR - ·þÎñ½«¼ÌÐøÔËÐÐ£¬µ«½»Ò×¹¦ÄÜ¿ÉÄÜ²»¿ÉÓÃ
+2025-10-31 17:49:02,399 - __main__ - INFO - ==================================================
+2025-10-31 17:49:02,399 - __main__ - INFO - Web·þÎñÆô¶¯ÖÐ...
+2025-10-31 17:49:02,399 - __main__ - INFO - ·ÃÎÊµØÖ·: http://0.0.0.0:5000
+2025-10-31 17:49:02,399 - __main__ - INFO - ==================================================
+2025-10-31 17:49:02,409 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.31.169:5000
+2025-10-31 17:49:02,409 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-31 17:49:37,820 - engineio.server - INFO - Server initialized for threading.
+2025-10-31 17:49:38,396 - app - INFO - DeepSeek¿Í»§¶ËÒÑ³õÊ¼»¯ (API Key: sk-c009a...)
+2025-10-31 17:49:38,402 - app - INFO - OKX½»Ò×ËùÒÑ³õÊ¼»¯ (API Key: 98029358...)
+2025-10-31 17:49:51,480 - engineio.server - INFO - Server initialized for threading.
+2025-10-31 17:49:52,036 - app - INFO - DeepSeek¿Í»§¶ËÒÑ³õÊ¼»¯ (API Key: sk-c009a...)
+2025-10-31 17:49:52,041 - app - INFO - OKX½»Ò×ËùÒÑ³õÊ¼»¯ (API Key: 98029358...)
+2025-11-05 15:56:33,886 - __main__ - INFO - DeepSeek¿Í»§¶ËÒÑ³õÊ¼»¯ (API Key: sk-c009a...)
+2025-11-05 15:56:34,681 - __main__ - INFO - OKX½»Ò×ËùÒÑ³õÊ¼»¯ (API Key: 98029358...)
+2025-11-05 15:56:34,685 - __main__ - INFO - ==================================================
+2025-11-05 15:56:34,685 - __main__ - INFO - ¼ÓÃÜ»õ±Ò½»Ò×»úÆ÷ÈËÆô¶¯ÖÐ...
+2025-11-05 15:56:34,685 - __main__ - INFO - Ö§³Ö½»Ò×Ëù: OKX (½öÖ§³Ö)
+2025-11-05 15:56:34,685 - __main__ - INFO - ½»Ò×¶Ô: BTC/USDT:USDT (ÓÀÐøºÏÔ¼)
+2025-11-05 15:56:34,686 - __main__ - INFO - ==================================================
+2025-11-05 15:56:34,993 - __main__ - ERROR - OKX½»Ò×ËùÉèÖÃÊ§°Ü: OKX API ´íÎó 50113: Invalid Sign
+2025-11-05 15:56:34,994 - __main__ - ERROR - ´íÎóÀàÐÍ: OKXAPIError
+2025-11-05 15:56:34,996 - __main__ - ERROR - ÏêÏ¸´íÎóÐÅÏ¢: Traceback (most recent call last):
+  File "d:\project\dsok\app.py", line 427, in setup_exchange
+    exchange.private_post_account_set_leverage(params)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "d:\project\dsok\deepseek_ok_3.0.py", line 180, in private_post_account_set_leverage
+    return self._request('POST', 'account/set-leverage', body=params)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\project\dsok\deepseek_ok_3.0.py", line 143, in _request
+    raise OKXAPIError(f"OKX API ´íÎó {error_code}: {error_msg}")
+deepseek_ok_3_0.OKXAPIError: OKX API ´íÎó 50113: Invalid Sign
+
+2025-11-05 15:56:34,996 - __main__ - ERROR - Çë¼ì²éOKX APIÃÜÔ¿ÊÇ·ñÕýÈ·£¬ÒÔ¼°ÊÇ·ñÉèÖÃÁËIP°×Ãûµ¥
+2025-11-05 15:56:34,997 - __main__ - ERROR - OKX½»Ò×Ëù³õÊ¼»¯Ê§°Ü£¬Çë¼ì²éAPIÅäÖÃ
+2025-11-05 15:56:34,997 - __main__ - ERROR - ·þÎñ½«¼ÌÐøÔËÐÐ£¬µ«½»Ò×¹¦ÄÜ¿ÉÄÜ²»¿ÉÓÃ
+2025-11-05 15:56:34,997 - __main__ - INFO - ==================================================
+2025-11-05 15:56:34,998 - __main__ - INFO - Web·þÎñÆô¶¯ÖÐ...
+2025-11-05 15:56:34,998 - __main__ - INFO - ·ÃÎÊµØÖ·: http://0.0.0.0:5000
+2025-11-05 15:56:34,998 - __main__ - INFO - ==================================================
+2025-11-05 15:56:35,013 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://198.18.0.1:5000
+2025-11-05 15:56:35,014 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-05 16:00:11,676 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:11] "GET / HTTP/1.1" 200 -
+2025-11-05 16:00:11,816 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:11] "GET /static/css/style.css?v=20251029-2 HTTP/1.1" 200 -
+2025-11-05 16:00:11,816 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:11] "GET /static/js/app.js?v=20251029-3 HTTP/1.1" 200 -
+2025-11-05 16:00:12,150 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:12] "GET /socket.io/?EIO=4&transport=polling&t=PfJ1yzo HTTP/1.1" 200 -
+2025-11-05 16:00:12,181 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:12] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:00:12,418 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:12] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:12,433 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:12] "POST /socket.io/?EIO=4&transport=polling&t=PfJ1y-S&sid=RTRGPVaLXAk59VbAAAAA HTTP/1.1" 200 -
+2025-11-05 16:00:12,438 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:12] "GET /socket.io/?EIO=4&transport=polling&t=PfJ1y-T&sid=RTRGPVaLXAk59VbAAAAA HTTP/1.1" 200 -
+2025-11-05 16:00:12,567 - __main__ - ERROR - Not found: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-11-05 16:00:12,567 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-05 16:00:12,864 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:13,731 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:13] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:00:13,784 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:13] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:00:13,807 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:13,808 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:13] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:00:13,992 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:13] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:00:14,124 - __main__ - INFO - [×ÜÓ¯¿÷¼ÆËã] µ±Ç°Óà¶î=0.00, ³õÊ¼Óà¶î=100.00, ×ÜÓ¯¿÷=-100.00, ÓÐ³Ö²Ö=True
+2025-11-05 16:00:14,124 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:14] "GET /api/status HTTP/1.1" 200 -
+2025-11-05 16:00:14,180 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:14] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:14,235 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:14] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:14,255 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:14] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:14,906 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:15,361 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:15,365 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:15] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:16,182 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:16] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:16,199 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:16] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:16,782 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:17,041 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:17,045 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:17] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:18,200 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:18] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:18,222 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:18] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:18,740 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:18,984 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:18,992 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:18] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:20,185 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:20] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:20,199 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:20] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:20,769 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:21,102 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:21,134 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:21] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:22,205 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:22] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:22,231 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:22] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:22,804 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:23,051 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:23,057 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:23] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:24,191 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:24] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:24,200 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:24] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:24,785 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:25,089 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:25,095 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:25] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:26,200 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:26] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:26,275 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:26] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:26,781 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:27,108 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:27,113 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:27] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:28,182 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:28] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:28,257 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:28] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:28,735 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:29,005 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:29,010 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:29] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:30,191 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:30] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:30,203 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:30] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:30,742 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:31,091 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:31,095 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:31] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:32,197 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:32] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:32,213 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:32] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:32,859 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:33,160 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:33,164 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:33] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:34,180 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:34] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:34,192 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:34] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:34,855 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:35,301 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:35,307 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:35] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:37,087 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:37] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:37,098 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:37] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:37,747 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:38,079 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:38,083 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:38] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:39,091 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:39] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:39,099 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:39] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:39,729 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:39,986 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:39,992 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:39] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:41,087 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:41] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:41,097 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:41] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:41,699 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:42,015 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:42,021 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:42] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:43,082 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:43] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:00:43,097 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:43] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:43,102 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:43] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:00:43,964 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:44,356 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:44] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:00:44,364 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:44] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:00:44,523 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:44,527 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:44] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:44,563 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:44] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:00:44,565 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:44] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:00:45,082 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:45,082 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:45] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:00:45,097 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:45] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:00:46,008 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:00:46,295 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:00:46,299 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:46] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:00:47,090 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:47,091 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:47,092 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:47,247 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:47] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:00:47,248 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:47] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:00:47,248 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:47] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:00:49,086 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:49,087 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:49] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:00:49,089 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:49,090 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:49,091 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:49] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:00:49,091 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:49] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:00:51,085 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:51,086 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:51] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:00:51,087 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:51,087 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:51] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:00:51,088 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:51,089 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:51] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:00:53,092 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:53,092 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:53] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:00:53,093 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:53,093 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:53,094 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:53] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:00:53,094 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:53] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:00:55,092 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:55,093 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:55] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:00:55,094 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:55,094 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:55,094 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:55] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:00:55,095 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:55] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:00:57,091 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:57,091 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:57] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:00:57,092 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:57,092 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:57,093 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:57] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:00:57,093 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:57] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:00:59,081 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:59,082 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:59] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:00:59,088 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:59,088 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:00:59,089 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:59] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:00:59,090 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:00:59] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:01:01,081 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:01,081 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:01] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:01:01,082 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:01,082 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:01] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:01:01,083 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:01,084 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:01] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:01:03,081 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:03,082 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:03] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:01:03,083 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:03,083 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:03] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:01:03,084 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:03,085 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:03] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:01:05,079 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:05,079 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:05] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:01:05,080 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:05,080 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:05,081 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:05] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:01:05,081 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:05] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:01:07,093 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:07,094 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:07] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:01:07,095 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:07,095 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:07,096 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:07] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:01:07,096 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:07] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:01:09,091 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:09,092 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:09] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:01:09,095 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:09,096 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:09] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:01:09,100 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:09,101 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:09] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:01:11,091 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:11,091 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:11] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:01:11,093 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:11,094 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:11] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:01:11,095 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:01:11,095 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:11] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:01:13,095 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:13] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:01:13,205 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:13] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:13,315 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:13] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:13,891 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:14,304 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:14,310 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:14] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:14,539 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:14] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:01:14,558 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:14] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:01:14,567 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:14] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:01:14,624 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:14] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:01:15,091 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:15] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:15,101 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:15] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:15,647 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:16,149 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:16,154 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:16] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:17,093 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:17] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:17,111 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:17] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:17,654 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:17,895 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:17,900 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:17] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:19,091 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:19] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:19,102 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:19] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:19,591 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:19,863 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:19,868 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:19] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:21,089 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:21] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:21,098 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:21] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:21,564 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:21,844 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:21,848 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:21] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:23,100 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:23] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:23,220 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:23] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:23,592 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:23,848 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:23,965 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:23] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:25,083 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:25] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:25,092 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:25] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:25,629 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:25,919 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:25,925 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:25] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:27,081 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:27] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:27,093 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:27] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:27,642 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:27,934 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:28,211 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:28] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:29,090 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:29] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:29,100 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:29] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:29,630 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:29,941 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:29,946 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:29] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:31,090 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:31] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:31,106 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:31] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:31,621 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:31,904 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:31,909 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:31] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:33,089 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:33] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:33,098 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:33] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:33,735 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:34,043 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:34,048 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:34] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:35,096 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:35] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:01:35,115 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:35] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:01:35,643 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:01:35,941 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:01:35,945 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:35] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:01:43,076 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:43] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:01:44,268 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:44] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:01:44,276 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:44] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:01:44,286 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:44] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:01:44,287 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:01:44] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:02:07,099 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:07] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:02:07,109 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:07] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:02:07,635 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:02:07,962 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:02:07,967 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:07] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:02:13,089 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:13] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:02:14,312 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:14] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:02:14,323 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:14] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:02:14,362 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:14] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:02:14,363 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:14] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:02:43,086 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:43] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:02:44,183 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:44] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:02:44,191 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:44] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:02:44,192 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:44] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:02:44,350 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:02:44] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:03:07,112 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:07] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:03:07,125 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:07] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:03:07,756 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:03:08,008 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:03:08,014 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:08] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:03:13,094 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:13] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:03:14,197 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:14] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:03:14,269 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:14] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:03:14,269 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:14] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:03:14,278 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:14] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:03:42,835 - __main__ - INFO - DeepSeek¿Í»§¶ËÒÑ³õÊ¼»¯ (API Key: sk-c009a...)
+2025-11-05 16:03:43,528 - __main__ - INFO - OKX½»Ò×ËùÒÑ³õÊ¼»¯ (API Key: 98029358...)
+2025-11-05 16:03:43,531 - __main__ - INFO - ==================================================
+2025-11-05 16:03:43,532 - __main__ - INFO - ¼ÓÃÜ»õ±Ò½»Ò×»úÆ÷ÈËÆô¶¯ÖÐ...
+2025-11-05 16:03:43,532 - __main__ - INFO - Ö§³Ö½»Ò×Ëù: OKX (½öÖ§³Ö)
+2025-11-05 16:03:43,532 - __main__ - INFO - ½»Ò×¶Ô: BTC/USDT:USDT (ÓÀÐøºÏÔ¼)
+2025-11-05 16:03:43,532 - __main__ - INFO - ==================================================
+2025-11-05 16:03:43,848 - __main__ - INFO - OKX¸Ü¸ËÒÑÉèÖÃ: 10x
+2025-11-05 16:03:44,089 - __main__ - INFO - OKXÕË»§USDTÓà¶î: 104.31 USDT
+2025-11-05 16:03:44,089 - __main__ - INFO - OKX APIÁ¬½ÓÑéÖ¤³É¹¦
+2025-11-05 16:03:44,090 - __main__ - INFO - ==================================================
+2025-11-05 16:03:44,090 - __main__ - INFO - Web·þÎñÆô¶¯ÖÐ...
+2025-11-05 16:03:44,090 - __main__ - INFO - ·ÃÎÊµØÖ·: http://0.0.0.0:5000
+2025-11-05 16:03:44,090 - __main__ - INFO - ==================================================
+2025-11-05 16:03:44,096 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://198.18.0.1:5000
+2025-11-05 16:03:44,096 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-05 16:03:45,086 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:45] "GET /socket.io/?EIO=4&transport=polling&t=PfJ2myx HTTP/1.1" 200 -
+2025-11-05 16:03:45,090 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:45] "POST /socket.io/?EIO=4&transport=polling&t=PfJ2mz0&sid=GHiy52iGtZRGYDk_AAAA HTTP/1.1" 200 -
+2025-11-05 16:03:45,092 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:45] "GET /socket.io/?EIO=4&transport=polling&t=PfJ2mz1&sid=GHiy52iGtZRGYDk_AAAA HTTP/1.1" 200 -
+2025-11-05 16:03:45,096 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:03:45] "GET /socket.io/?EIO=4&transport=polling&t=PfJ2mz5&sid=GHiy52iGtZRGYDk_AAAA HTTP/1.1" 200 -
+2025-11-05 16:04:07,098 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:04:07] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:04:07,099 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:04:07] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:04:07,154 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:04:07] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:04:07,986 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:04:08,384 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:04:08,392 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:04:08] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:04:08,402 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:04:08] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:04:08,402 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:04:08] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:04:08,414 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:04:08] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:04:08,452 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:04:08] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:07,113 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:07] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:05:07,116 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:07] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:07,125 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:07] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:08,053 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:08,461 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:08] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:08,465 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:08,471 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:08] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:08,473 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:08] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:08,493 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:08] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:08,494 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:08] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:05:31,533 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:31] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:05:31,536 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:31] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:31,551 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:31] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:32,364 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:32,844 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:32,846 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:05:32,851 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:32,856 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:32,862 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:32,875 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:32,888 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:32,915 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:32,926 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:32,969 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "GET /socket.io/?EIO=4&transport=websocket&sid=GHiy52iGtZRGYDk_AAAA HTTP/1.1" 200 -
+2025-11-05 16:05:32,977 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:32] "GET / HTTP/1.1" 200 -
+2025-11-05 16:05:33,082 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "[36mGET /static/css/style.css?v=20251029-2 HTTP/1.1[0m" 304 -
+2025-11-05 16:05:33,087 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "[36mGET /static/js/app.js?v=20251029-3 HTTP/1.1[0m" 304 -
+2025-11-05 16:05:33,109 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "GET /socket.io/?EIO=4&transport=polling&t=PfJ3BKp HTTP/1.1" 200 -
+2025-11-05 16:05:33,116 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "GET /api/signal_accuracy HTTP/1.1" 200 -
+2025-11-05 16:05:33,129 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:33,176 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "POST /socket.io/?EIO=4&transport=polling&t=PfJ3BLp&sid=bucJf2xqMW_mYsSbAAAC HTTP/1.1" 200 -
+2025-11-05 16:05:33,181 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "GET /socket.io/?EIO=4&transport=polling&t=PfJ3BLr&sid=bucJf2xqMW_mYsSbAAAC HTTP/1.1" 200 -
+2025-11-05 16:05:33,194 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "GET /socket.io/?EIO=4&transport=polling&t=PfJ3BM6&sid=bucJf2xqMW_mYsSbAAAC HTTP/1.1" 200 -
+2025-11-05 16:05:33,220 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:33,229 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:33] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:33,529 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:34,351 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:34] "GET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:34,351 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:34] "GET /api/overview?range=7d HTTP/1.1" 200 -
+2025-11-05 16:05:34,369 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:34] "GET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:34,392 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:34,397 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:34] "GET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1" 200 -
+2025-11-05 16:05:34,671 - __main__ - INFO - [×ÜÓ¯¿÷¼ÆËã] µ±Ç°Óà¶î=0.00, ³õÊ¼Óà¶î=100.00, ×ÜÓ¯¿÷=-100.00, ÓÐ³Ö²Ö=True
+2025-11-05 16:05:34,672 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:34] "GET /api/status HTTP/1.1" 200 -
+2025-11-05 16:05:34,692 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:34] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:35,115 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:35] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:35,131 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:35] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:35,702 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:35,956 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:35,963 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:35] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:37,138 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:37] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:37,156 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:37] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:37,700 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:37,968 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:37,973 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:37] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:39,123 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:39] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:39,139 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:39] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:39,705 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:40,005 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:40,009 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:40] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:41,130 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:41] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:41,140 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:41] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:41,666 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:41,901 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:41,905 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:41] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:43,129 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:43] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:43,138 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:43] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:43,719 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:43,971 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:43,975 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:43] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:45,114 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:45] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:45,123 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:45] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:45,693 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:45,982 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:45,986 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:45] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:47,123 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:47] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:47,134 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:47] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:47,759 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:48,034 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:48,039 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:48] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:49,125 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:49] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:49,135 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:49] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:49,634 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:49,935 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:49,940 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:49] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:51,114 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:51] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:51,123 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:51] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:51,878 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:52,167 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:52,173 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:52] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:53,136 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:53] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:53,155 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:53] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:53,682 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:53,988 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:53,993 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:53] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:55,130 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:55] "GET /api/trading_logs HTTP/1.1" 200 -
+2025-11-05 16:05:55,148 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:55] "[35m[1mGET /api/bot_status HTTP/1.1[0m" 500 -
+2025-11-05 16:05:55,803 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:56,069 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:56,073 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:56] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:57,115 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:05:57,115 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:57] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:05:57,115 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:05:57,116 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:57] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:05:57,704 - __main__ - INFO - »ñÈ¡µ½ 1 ¸ö³Ö²ÖÊý¾Ý
+2025-11-05 16:05:58,008 - __main__ - WARNING - ÐÅºÅÎÄ¼þ²»´æÔÚ: d:\project\dsok\latest_signal.json
+2025-11-05 16:05:58,016 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:58] "POST /api/refresh_data HTTP/1.1" 200 -
+2025-11-05 16:05:59,123 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:05:59,124 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:59] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:05:59,124 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:05:59,125 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:59] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:05:59,125 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:05:59,125 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:05:59] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:06:01,122 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:01,122 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:01] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:06:01,123 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:01,123 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:01] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:06:01,124 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:01,124 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:01] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,121 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,122 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mPOST /api/refresh_data HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,122 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,122 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,123 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,123 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mGET /api/bot_status HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,123 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mGET /api/signal_accuracy HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,124 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,125 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mGET /api/overview?range=7d HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,126 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,126 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mGET /api/ai_decisions?symbol=BTC/USDT:USDT HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,127 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,128 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mGET /api/trades?symbol=BTC/USDT:USDT HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,129 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,129 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mGET /api/signals?symbol=BTC/USDT:USDT HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,130 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mGET /api/trading_logs HTTP/1.1[0m" 429 -
+2025-11-05 16:06:03,132 - __main__ - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-11-05 16:06:03,132 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:03] "[31m[1mGET /api/equity_curve HTTP/1.1[0m" 429 -
+2025-11-05 16:06:05,039 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2025 16:06:05] "GET /socket.io/?EIO=4&transport=websocket&sid=bucJf2xqMW_mYsSbAAAC HTTP/1.1" 200 -

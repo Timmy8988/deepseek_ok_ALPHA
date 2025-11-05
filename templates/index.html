@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>DSOK量化机器人</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=20251029-2">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 控制面板 -->
+        <div class="card control-panel">
+            <div class="card-header">
+                <i class="fas fa-cog"></i>
+                <h3>控制面板</h3>
+            </div>
+            <div class="control-buttons">
+                <button id="toggleBot" class="btn btn-success">
+                    <i class="fas fa-play"></i>
+                    <span id="toggleBotText">启动机器人</span>
+                </button>
+                <button id="restartBot" class="btn btn-warning">
+                    <i class="fas fa-sync-alt"></i>
+                    重启机器人
+                </button>
+            </div>
+            <div class="bot-status-indicator">
+                <i class="fas fa-circle" id="statusDot"></i>
+                <span id="botStatusText">检查中...</span>
+            </div>
+            <div class="test-mode-section">
+                <div class="test-mode-header">
+                    <i class="fas fa-flask"></i>
+                    <span>测试模式</span>
+                    <label class="switch">
+                        <input type="checkbox" id="testMode">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="status-text" id="testModeLabel">加载中...</span>
+                </div>
+                <div class="test-mode-hint">
+                    <i class="fas fa-info-circle"></i>
+                    开启：仅模拟，不会真实下单 | 关闭：真实交易
+                </div>
+            </div>
+            <div class="auto-refresh-section">
+                <div class="refresh-header">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>自动刷新</span>
+                    <label class="switch">
+                        <input type="checkbox" id="autoRefresh" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span class="status-text enabled">√ 已启用 (默认)</span>
+                </div>
+                <div class="refresh-hint">
+                    <i class="fas fa-lightbulb"></i>
+                    自动刷新只更新数据,不显示提示
+                </div>
+                <div class="refresh-interval">
+                    <span>刷新间隔:</span>
+                    <select id="refreshInterval">
+                        <option value="1">1秒</option>
+                        <option value="2" selected>2秒 (推荐)</option>
+                        <option value="5">5秒</option>
+                        <option value="10">10秒</option>
+                        <option value="30">30秒</option>
+                    </select>
+                </div>
+                <button id="refreshNow" class="btn btn-primary">
+                    <i class="fas fa-sync-alt"></i>
+                    立即刷新
+                </button>
+            </div>
+        </div>
+
+        <!-- 运行状态 -->
+        <div class="card running-status">
+            <div class="card-header">
+                <i class="fas fa-chart-line"></i>
+                <h3>运行状态</h3>
+            </div>
+            <div class="status-grid">
+                <div class="status-item">
+                    <span class="label">运行时长</span>
+                    <span class="value" id="runningTime">0分钟</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">BTC价格</span>
+                    <span class="value" id="btcPrice">$0.00</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">最新信号</span>
+                    <span class="value signal hold" id="latestSignal">HOLD 观望</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">信心程度</span>
+                    <span class="value confidence" id="confidenceLevel">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 持仓详情 -->
+        <div class="card position-details">
+            <div class="card-header">
+                <i class="fas fa-chart-line"></i>
+                <h3>持仓详情</h3>
+            </div>
+            <div class="position-grid">
+                <div class="position-item">
+                    <span class="label">持仓方向</span>
+                    <div class="value">
+                        <div class="direction-dot" id="directionDot"></div>
+                        <span id="positionDirection">无持仓</span>
+                    </div>
+                </div>
+                <div class="position-item">
+                    <span class="label">持仓量</span>
+                    <span class="value" id="positionSize">0.00 张</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">BTC数量</span>
+                    <span class="value" id="btcQuantity">0.0000 BTC</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">当前价格</span>
+                    <span class="value" id="currentPrice">$0.00</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">开仓均价</span>
+                    <span class="value" id="entryPrice">$0.00</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">持仓价值</span>
+                    <span class="value" id="positionValue">$0.00</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">杠杆倍数</span>
+                    <span class="value" id="leverage">10x</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">占用保证金</span>
+                    <span class="value" id="initialMargin">$0.00</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">
+                        维持保证金率
+                        <i class="fas fa-info-circle" 
+                           style="font-size: 0.8em; color: #999; cursor: help;" 
+                           title="🟢 >1000%: 安全&#10;🟡 300%-1000%: 警告&#10;🔴 <300%: 危险，即将强平！"></i>
+                    </span>
+                    <span class="value" id="maintMargin">0.00%</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">强平价格</span>
+                    <span class="value warning" id="liquidationPrice">$0.00</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">未实现盈亏</span>
+                    <span class="value pnl" id="unrealizedPnl">+$0.00</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">盈亏比例</span>
+                    <span class="value pnl" id="pnlRatio">+0.00%</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">账户余额</span>
+                    <span class="value" id="accountBalance">$0.00</span>
+                </div>
+                <div class="position-item">
+                    <span class="label">可用余额</span>
+                    <span class="value" id="availableBalance">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 信号准确率统计 -->
+        <div class="card signal-accuracy">
+            <div class="card-header">
+                <i class="fas fa-chart-pie"></i>
+                <h3>信号准确率统计</h3>
+            </div>
+            <div class="accuracy-grid">
+                <div class="accuracy-item">
+                    <span class="label">总交易</span>
+                    <span class="value" id="totalTrades">0</span>
+                </div>
+                <div class="accuracy-item">
+                    <span class="label">盈利交易</span>
+                    <span class="value winning" id="winningTrades">0</span>
+                </div>
+                <div class="accuracy-item">
+                    <span class="label">亏损交易</span>
+                    <span class="value losing" id="losingTrades">0</span>
+                </div>
+                <div class="accuracy-item">
+                    <span class="label">准确率</span>
+                    <span class="value accuracy-rate" id="accuracyRate">0%</span>
+                </div>
+            </div>
+            <div class="signal-distribution">
+                <div class="distribution-item">
+                    <span class="label">信号分布</span>
+                    <div id="signalChart" style="width: 100%; height: 200px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI决策历史与交易记录 -->
+        <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+            <!-- AI决策历史 -->
+            <div class="card" style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column;">
+                <div class="card-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>AI决策历史</h3>
+                </div>
+                <div class="card-body" id="aiDecisionList" style="padding: 10px; flex: 1; overflow-y: auto;">
+                    <div style="text-align: center; color: #999; padding: 20px;">加载中...</div>
+                </div>
+            </div>
+
+            <!-- 交易记录 -->
+            <div class="card" style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column;">
+                <div class="card-header">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>交易记录</h3>
+                </div>
+                <div class="card-body" id="tradeHistory" style="padding: 10px; flex: 1; overflow-y: auto;">
+                    <div style="text-align: center; color: #999; padding: 20px;">加载中...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 资金曲线 -->
+        <div class="card equity-curve">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-chart-area"></i>
+                    <h3>资金曲线</h3>
+                </div>
+                <div class="range-selector" id="equityRangeSelector" style="display: flex; gap: 5px;">
+                    <button class="range-btn active" data-range="1d" style="padding: 5px 10px; border: 1px solid #ddd; background: #f0f0f0; cursor: pointer; border-radius: 4px;">日</button>
+                    <button class="range-btn" data-range="7d" style="padding: 5px 10px; border: 1px solid #ddd; background: #f0f0f0; cursor: pointer; border-radius: 4px;">7天</button>
+                    <button class="range-btn" data-range="15d" style="padding: 5px 10px; border: 1px solid #ddd; background: #f0f0f0; cursor: pointer; border-radius: 4px;">15天</button>
+                    <button class="range-btn" data-range="1m" style="padding: 5px 10px; border: 1px solid #ddd; background: #f0f0f0; cursor: pointer; border-radius: 4px;">月</button>
+                    <button class="range-btn" data-range="1y" style="padding: 5px 10px; border: 1px solid #ddd; background: #f0f0f0; cursor: pointer; border-radius: 4px;">年</button>
+                    <button class="range-btn" data-range="all" style="padding: 5px 10px; border: 1px solid #ddd; background: #f0f0f0; cursor: pointer; border-radius: 4px;">全部</button>
+                </div>
+            </div>
+            <div class="equity-stats">
+                <div class="stat-item">
+                    <span class="label">初始资金</span>
+                    <span class="value" id="initialBalance">$0.00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">当前资金</span>
+                    <span class="value" id="currentBalance">$0.00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">总收益率</span>
+                    <span class="value" id="totalReturn">0%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">最大回撤</span>
+                    <span class="value" id="maxDrawdown">0%</span>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="equityChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 实时日志 -->
+        <div class="card real-time-log">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center;">
+                    <i class="fas fa-scroll"></i>
+                    <h3>实时日志</h3>
+                </div>
+                <div id="countdownTimer" style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #666;">
+                    <i class="fas fa-clock"></i>
+                    <span id="countdownText">计算中...</span>
+                </div>
+            </div>
+            <div class="log-container">
+                <div class="log-content" id="logContent">
+                    <div class="log-entry">
+                        <span class="timestamp">[19:39:47]</span>
+                        <i class="fas fa-bullseye"></i>
+                        <span>止盈价格: $115,500.00</span>
+                    </div>
+                    <div class="log-entry">
+                        <span class="timestamp">[19:39:47]</span>
+                        <i class="fas fa-sync-alt"></i>
+                        <span>准备执行交易决策...</span>
+                    </div>
+                    <div class="log-entry">
+                        <span class="timestamp">[19:39:47]</span>
+                        <i class="fas fa-box"></i>
+                        <span>当前持仓状态:</span>
+                    </div>
+                    <div class="log-entry">
+                        <span class="timestamp">[19:39:47]</span>
+                        <span>方向: long</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="footer">
+        <span>Crypto Trading Bot</span>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}?v=20251029-3"></script>
+</body>
+</html>
