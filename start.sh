@@ -36,7 +36,7 @@ pm2 delete dsok-web 2>/dev/null || true
 pm2 delete dsok-bot 2>/dev/null || true
 
 # 使用PM2配置文件启动
-echo "启动应用..."
+echo "启动应用（Web + Bot 合并进程）..."
 pm2 start ecosystem.config.js
 
 # 保存PM2配置
@@ -52,11 +52,11 @@ pm2 status
 
 echo ""
 echo "=========================================="
-echo "查看所有日志: pm2 logs"
-echo "查看Web日志: pm2 logs dsok-web"
-echo "查看Bot日志: pm2 logs dsok-bot"
-echo "启动所有服务：./start.sh"
-echo "查看运行状态：./status.sh"
-echo "重启服务：./restart.sh"
-echo "停止服务：./stop.sh"
+echo "📖 常用命令:"
+echo "=========================================="
+echo "  查看所有日志:    pm2 logs"
+echo "  查看服务日志:    pm2 logs dsok"
+echo "  查看运行状态:    ./status.sh"
+echo "  重启服务:        ./restart.sh"
+echo "  停止服务:        ./stop.sh"
 echo "=========================================="

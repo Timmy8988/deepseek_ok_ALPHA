@@ -126,6 +126,56 @@ body {
 }
 
 /* 机器人状态指示器 */
+/* 交易模式状态指示器 */
+.trading-mode-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    gap: 10px;
+    border: 2px solid;
+    transition: all 0.3s ease;
+}
+
+.trading-mode-indicator.mode-test {
+    background: rgba(255, 193, 7, 0.1);
+    border-color: #ffc107;
+}
+
+.trading-mode-indicator.mode-live {
+    background: rgba(220, 53, 69, 0.1);
+    border-color: #dc3545;
+}
+
+.trading-mode-indicator .mode-dot {
+    font-size: 10px;
+    transition: all 0.3s ease;
+}
+
+.trading-mode-indicator .mode-dot.mode-test {
+    color: #ffc107;
+}
+
+.trading-mode-indicator .mode-dot.mode-live {
+    color: #dc3545;
+}
+
+.trading-mode-indicator .mode-text {
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.trading-mode-indicator .mode-text.mode-test {
+    color: #856404;
+}
+
+.trading-mode-indicator .mode-text.mode-live {
+    color: #721c24;
+}
+
 .bot-status-indicator {
     display: flex;
     align-items: center;

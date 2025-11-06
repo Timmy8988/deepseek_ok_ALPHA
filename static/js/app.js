@@ -8,12 +8,13 @@ let currentEquityRange = '7d'; // 默认7天
 
 // 初始化
 document.addEventListener('DOMContentLoaded', function() {
-    initializeSocket();
+    // 先初始化事件监听器（在更新UI之前）
     initializeEventListeners();
+    
+    initializeSocket();
     loadInitialData();
     startAutoRefresh();
     initializeMobileFeatures();
-    startTradingLogRefresh(); // 启动交易日志刷新
     startCountdownTimer(); // 启动倒计时
     initializeEquityRangeSelector(); // 初始化资金曲线时间范围选择器
 });
@@ -148,16 +149,27 @@ function initializeSocket() {
 // 初始化事件监听器
 function initializeEventListeners() {
     // 控制按钮
-    document.getElementById('toggleBot').addEventListener('click', toggleBot);
-    document.getElementById('restartBot').addEventListener('click', restartBot);
-    document.getElementById('refreshNow').addEventListener('click', refreshData);
+    const refreshBtn = document.getElementById('refreshNow');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', refreshData);
+    }
     
-    // 测试模式切换（自动保存）
-    document.getElementById('testMode').addEventListener('change', saveTestMode);
+    // 测试模式切换按钮
+    const toggleTestModeBtn = document.getElementById('toggleTestMode');
+    if (toggleTestModeBtn) {
+        toggleTestModeBtn.addEventListener('click', toggleTestMode);
+    }
     
     // 自动刷新设置
-    document.getElementById('autoRefresh').addEventListener('change', toggleAutoRefresh);
-    document.getElementById('refreshInterval').addEventListener('change', updateRefreshInterval);
+    const autoRefreshCheckbox = document.getElementById('autoRefresh');
+    if (autoRefreshCheckbox) {
+        autoRefreshCheckbox.addEventListener('change', toggleAutoRefresh);
+    }
+    
+    const refreshIntervalSelect = document.getElementById('refreshInterval');
+    if (refreshIntervalSelect) {
+        refreshIntervalSelect.addEventListener('change', updateRefreshInterval);
+    }
 }
 
 // 加载初始数据
@@ -171,9 +183,11 @@ async function loadInitialData() {
         
         updateStatus(data);
         
-        // 确保配置正确加载并显示
-        if (data.config) {
-            updateConfigDisplay(data.config);
+        // 更新交易模式状态显示
+        if (data.config && data.config.test_mode !== undefined) {
+            currentTestMode = Boolean(data.config.test_mode);
+            updateTradingModeStatus(currentTestMode);
+            updateTestModeDisplay(currentTestMode);
         }
         
         // 加载机器人状态
@@ -181,6 +195,8 @@ async function loadInitialData() {
     } catch (error) {
         console.error('加载数据失败:', error);
         addLogEntry('❌ 加载初始数据失败', 'ERROR', 'fas fa-exclamation-triangle');
+        // 即使加载失败，也设置默认状态
+        updateTradingModeStatus(true);
     }
 }
 
@@ -252,57 +268,9 @@ async function toggleBot() {
     }
 }
 
-// 重启机器人
-async function restartBot() {
-    const confirmed = confirm(
-        '🔄 确定要重启交易机器人吗？\n\n' +
-        '重启后：\n' +
-        '• 新的配置将立即生效\n' +
-        '• 机器人将重新开始执行\n' +
-        '• 不会影响现有持仓\n\n' +
-        '是否继续？'
-    );
-    
-    if (!confirmed) {
-        return;
-    }
-    
-    const btn = document.getElementById('restartBot');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 重启中...';
-    
-    // 添加操作日志
-    addLogEntry('🔄 正在重启交易机器人...', 'WARNING', 'fas fa-sync-alt');
-    
-    try {
-        const response = await fetch('/api/restart_bot', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-            addLogEntry('✅ 交易机器人重启成功，新配置已生效', 'SUCCESS', 'fas fa-check-circle');
-            alert('✅ ' + data.message);
-            // 等待2秒后更新状态
-            setTimeout(async () => {
-                await updateBotRunningStatus();
-            }, 2000);
-        } else {
-            addLogEntry('❌ 重启机器人失败: ' + data.message, 'ERROR', 'fas fa-exclamation-circle');
-            alert('❌ 重启失败: ' + data.message);
-        }
-    } catch (error) {
-        console.error('重启机器人失败:', error);
-        addLogEntry('❌ 重启失败: ' + error.message, 'ERROR', 'fas fa-times-circle');
-        alert('❌ 重启失败，请查看控制台');
-    } finally {
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-sync-alt"></i> 重启机器人';
-    }
+// 更新交易模式状态（显示已移除，保留函数以避免报错）
+function updateTradingModeStatus(testMode) {
+    // 显示已移除，此函数保留为空实现
 }
 
 // 更新机器人运行状态
@@ -337,86 +305,114 @@ async function refreshData() {
     }
 }
 
-// 保存测试模式（自动保存）
-async function saveTestMode() {
-    const testMode = document.getElementById('testMode').checked;
+// 当前测试模式状态（从服务器获取）
+let currentTestMode = true;
+
+// 切换测试模式
+async function toggleTestMode() {
+    const btn = document.getElementById('toggleTestMode');
     
-    // 如果关闭测试模式，需要二次确认
-    if (!testMode) {
+    if (!btn || btn.disabled) {
+        return;
+    }
+    
+    // 切换模式
+    const newMode = !currentTestMode;
+    const modeName = newMode ? '测试模式' : '实盘模式';
+    
+    // 如果切换到实盘模式，需要确认
+    if (!newMode) {
         const confirmed = confirm(
-            '⚠️ 警告：关闭测试模式\n\n' +
-            '关闭测试模式后，交易机器人将进行真实交易！\n\n' +
+            '⚠️ 警告：切换到实盘模式\n\n' +
+            '实盘模式将进行真实交易！\n\n' +
             '• 会使用真实资金下单\n' +
             '• 可能产生盈利或亏损\n' +
             '• 请确保账户有足够余额\n\n' +
-            '确定要关闭测试模式吗？'
+            '确定要切换到实盘模式吗？'
         );
-        
         if (!confirmed) {
-            document.getElementById('testMode').checked = true;
-            updateTestModeLabel(true);
+            addLogEntry('ℹ️ 用户取消切换模式', 'INFO', 'fas fa-info-circle');
             return;
         }
     }
     
-    // 从API获取当前配置，只更新test_mode
+    // 打印开始切换日志
+    addLogEntry(`🔄 正在切换交易模式: ${currentTestMode ? '测试模式' : '实盘模式'} → ${modeName}`, 'INFO', 'fas fa-exchange-alt');
+    
+    // 禁用按钮
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 6px;"></i> 保存中...';
+    
     try {
-        const statusResponse = await fetch('/api/status');
-        const statusData = await statusResponse.json();
-    
-    const config = {
-            ...(statusData.config || {}),
-        test_mode: testMode
-    };
-    
-    // 添加操作日志
-    const modeText = testMode ? '测试模式' : '真实交易模式';
-        addLogEntry(`💾 正在保存配置 (${modeText})...`, 'INFO', 'fas fa-save');
-    
         const response = await fetch('/api/update_config', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(config)
+            body: JSON.stringify({
+                test_mode: newMode
+            })
         });
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText || response.statusText}`);
+        }
         
         const data = await response.json();
         
         if (data.success) {
-            updateTestModeLabel(testMode);
-            addLogEntry(`✅ 配置已保存 (${modeText})`, 'SUCCESS', 'fas fa-check-circle');
+            // 更新状态
+            currentTestMode = newMode;
+            // 更新显示
+            updateTestModeDisplay(newMode);
+            // 打印成功日志
+            addLogEntry(`✅ 交易模式切换成功: ${modeName}`, 'SUCCESS', 'fas fa-check-circle');
+            console.log(`✅ 交易模式切换成功: ${modeName}`, { oldMode: !newMode, newMode: newMode });
         } else {
-            // 如果保存失败，恢复开关状态
-            document.getElementById('testMode').checked = !testMode;
-            updateTestModeLabel(!testMode);
-            addLogEntry('❌ 保存配置失败: ' + data.message, 'ERROR', 'fas fa-exclamation-circle');
-            alert('❌ 保存失败: ' + data.message);
+            // 打印失败日志
+            const errorMsg = data.message || '未知错误';
+            addLogEntry(`❌ 切换失败: ${errorMsg}`, 'ERROR', 'fas fa-exclamation-circle');
+            console.error('❌ 切换失败:', errorMsg, data);
+            alert('❌ 切换失败: ' + errorMsg);
         }
     } catch (error) {
-        console.error('保存配置失败:', error);
-        // 如果保存失败，恢复开关状态
-        document.getElementById('testMode').checked = !testMode;
-        updateTestModeLabel(!testMode);
-        addLogEntry('❌ 保存配置失败: ' + error.message, 'ERROR', 'fas fa-times-circle');
-        alert('❌ 保存配置失败，请查看控制台');
+        // 打印错误日志
+        const errorMsg = error.message || '网络错误';
+        addLogEntry(`❌ 切换失败: ${errorMsg}`, 'ERROR', 'fas fa-times-circle');
+        console.error('❌ 切换失败:', error);
+        alert('❌ 切换失败: ' + errorMsg);
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-exchange-alt" style="margin-right: 6px;"></i> 切换模式';
     }
 }
 
-// 更新测试模式标签
-function updateTestModeLabel(testMode) {
-    const label = document.getElementById('testModeLabel');
-    if (label) {
+// 更新测试模式显示
+function updateTestModeDisplay(testMode) {
+    const statusSpan = document.getElementById('testModeStatus');
+    const hintSpan = document.getElementById('testModeHint');
+    
+    if (statusSpan) {
         if (testMode) {
-            label.textContent = '✅ 开启';
-            label.style.color = '#28a745';
-            label.className = 'status-text enabled';
+            statusSpan.textContent = '测试模式';
+            statusSpan.style.backgroundColor = '#28a745';
+            statusSpan.style.color = '#fff';
         } else {
-            label.textContent = '🔴 关闭';
-            label.style.color = '#dc3545';
-            label.className = 'status-text disabled';
+            statusSpan.textContent = '实盘模式';
+            statusSpan.style.backgroundColor = '#dc3545';
+            statusSpan.style.color = '#fff';
         }
     }
+    
+    if (hintSpan) {
+        hintSpan.textContent = testMode 
+            ? '测试模式：仅模拟交易，不会真实下单' 
+            : '实盘模式：将进行真实交易，请谨慎操作';
+    }
+    
+    // 同时更新交易模式指示器
+    updateTradingModeStatus(testMode);
 }
 
 // 切换自动刷新
@@ -519,17 +515,11 @@ function updateRunningTime() {
 
 // 更新机器人状态UI
 function updateBotStatusUI(isRunning, status, uptimeMs) {
-    const toggleBtn = document.getElementById('toggleBot');
-    const toggleText = document.getElementById('toggleBotText');
     const statusDot = document.getElementById('statusDot');
     const statusText = document.getElementById('botStatusText');
     
     if (isRunning) {
         // 运行中状态
-        toggleBtn.classList.remove('btn-success');
-        toggleBtn.classList.add('btn-danger');
-        toggleBtn.innerHTML = '<i class="fas fa-stop"></i> <span id="toggleBotText">停止机器人</span>';
-        
         statusDot.style.color = '#28a745';
         statusDot.classList.add('pulse');
         statusText.textContent = '运行中';
@@ -555,10 +545,6 @@ function updateBotStatusUI(isRunning, status, uptimeMs) {
         updateRunningTime();
     } else {
         // 停止状态
-        toggleBtn.classList.remove('btn-danger');
-        toggleBtn.classList.add('btn-success');
-        toggleBtn.innerHTML = '<i class="fas fa-play"></i> <span id="toggleBotText">启动机器人</span>';
-        
         statusDot.style.color = '#dc3545';
         statusDot.classList.remove('pulse');
         statusText.textContent = status === 'not_found' ? '未启动' : '已停止';
@@ -568,6 +554,8 @@ function updateBotStatusUI(isRunning, status, uptimeMs) {
         stopRunningTimer();
     }
 }
+
+// 简化：不再需要复杂的时间戳保护，直接使用服务器返回的配置
 
 // 更新状态数据
 function updateStatus(data) {
@@ -590,8 +578,12 @@ function updateStatus(data) {
         clearPositionDetails();
     }
     
-    // 强制更新配置（即使config为空也使用默认值）
-    updateConfigDisplay(data.config);
+    // 更新交易模式状态显示
+    if (data.config && data.config.test_mode !== undefined) {
+        currentTestMode = Boolean(data.config.test_mode);
+        updateTradingModeStatus(currentTestMode);
+        updateTestModeDisplay(currentTestMode);
+    }
 }
 
 // 更新交易数据
@@ -811,29 +803,17 @@ function clearPositionDetails() {
     document.getElementById('availableBalance').textContent = '$0.00';
 }
 
-// 更新配置显示（只更新测试模式）
-function updateConfigDisplay(config) {
-    // 确保配置对象存在
-    if (!config) {
-        config = {
-            test_mode: true
-        };
-    }
-    
-    // 更新测试模式开关
-    const testMode = config.test_mode !== undefined ? config.test_mode : true;
-    const checkbox = document.getElementById('testMode');
-    
-    // 确保复选框状态正确设置
-    checkbox.checked = testMode === true || testMode === 'true';
-    
-    // 更新标签显示
-    updateTestModeLabel(testMode);
-}
 
 // 添加日志条目（在顶部显示，与交易日志一致）
 function addLogEntry(message, level = 'INFO', icon = 'fas fa-info-circle') {
     const logContent = document.getElementById('logContent');
+    
+    // 如果日志容器不存在，使用 console.log 作为后备
+    if (!logContent) {
+        console.log(`[${level}] ${message}`);
+        return;
+    }
+    
     const timestamp = new Date().toLocaleTimeString('zh-CN', { 
         hour12: false, 
         hour: '2-digit', 
@@ -863,7 +843,11 @@ function addLogEntry(message, level = 'INFO', icon = 'fas fa-info-circle') {
     `;
     
     // 在顶部插入（与交易日志显示逻辑一致）
-    logContent.insertBefore(logEntry, logContent.firstChild);
+    if (logContent.firstChild) {
+        logContent.insertBefore(logEntry, logContent.firstChild);
+    } else {
+        logContent.appendChild(logEntry);
+    }
     
     // 保持日志条数在合理范围内
     const entries = logContent.querySelectorAll('.log-entry');
@@ -875,11 +859,6 @@ function addLogEntry(message, level = 'INFO', icon = 'fas fa-info-circle') {
     logContent.scrollTop = 0;
 }
 
-// 交易日志刷新
-let tradingLogInterval;
-let lastLogCount = 0;
-
-// 启动交易日志刷新
 // 倒计时定时器
 let countdownInterval;
 
@@ -959,29 +938,6 @@ function updateCountdown() {
     }
 }
 
-function startTradingLogRefresh() {
-    // 立即加载一次
-    loadTradingLogs();
-    
-    // 每2秒刷新一次交易日志
-    tradingLogInterval = setInterval(() => {
-        loadTradingLogs();
-    }, 2000);
-}
-
-// 加载交易日志
-async function loadTradingLogs() {
-    try {
-        const response = await fetch('/api/trading_logs');
-        const data = await response.json();
-        
-        if (data.success && data.logs) {
-            updateTradingLogs(data.logs);
-        }
-    } catch (error) {
-        console.error('加载交易日志失败:', error);
-    }
-}
 
 // ==================== 新增：信号准确率和资金曲线功能 ====================
 
@@ -1630,130 +1586,6 @@ startAutoRefresh = function() {
     }, 30000);
 };
 
-// 更新交易日志显示（最新的在上方）
-function updateTradingLogs(logs) {
-    const logContent = document.getElementById('logContent');
-    
-    // 清空现有日志
-    logContent.innerHTML = '';
-    
-    // 反转日志顺序，让最新的在上方
-    const reversedLogs = logs.slice().reverse();
-    
-    // 添加新日志
-    reversedLogs.forEach(log => {
-        const logEntry = document.createElement('div');
-        logEntry.className = 'log-entry';
-        
-        // 尝试多种日志格式解析
-        let timeOnly = '';
-        let message = log;
-        let level = 'INFO';
-        
-        // 格式1: "2025-10-28 19:14:07 - INFO - 消息内容"
-        let logMatch = log.match(/^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (\w+) - (.+)$/);
-        
-        // 格式2: "2025-11-05T17:42:02: 消息内容" (PM2格式)
-        if (!logMatch) {
-            logMatch = log.match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}):\s*(.+)$/);
-        if (logMatch) {
-                const [, timestamp, msg] = logMatch;
-                timeOnly = timestamp.split('T')[1].split(':').slice(0, 3).join(':');
-                message = msg.trim();
-            }
-        }
-        
-        // 格式3: "2025-11-05 17:42:02,123 - INFO - 消息内容" (带毫秒)
-        if (!logMatch) {
-            logMatch = log.match(/^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}),\d+ - (\w+) - (.+)$/);
-        }
-        
-        // 格式4: "[2025-11-05 17:42:02] 消息内容"
-        if (!logMatch) {
-            logMatch = log.match(/^\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\]\s*(.+)$/);
-            if (logMatch) {
-                const [, timestamp, msg] = logMatch;
-                timeOnly = timestamp.split(' ')[1];
-                message = msg.trim();
-            }
-        }
-        
-        // 如果匹配到标准格式
-        if (logMatch && !timeOnly) {
-            const [, timestamp, lvl, msg] = logMatch;
-            timeOnly = timestamp.split(' ')[1] || timestamp.split('T')[1]?.split(':').slice(0, 3).join(':') || '';
-            level = lvl || 'INFO';
-            message = msg || message;
-        }
-        
-        // 如果还是没有时间，尝试从日志中提取任意时间格式
-        if (!timeOnly) {
-            const timeMatch = log.match(/(\d{2}:\d{2}:\d{2})/);
-            timeOnly = timeMatch ? timeMatch[1] : '';
-        }
-        
-        // 如果还是没有时间，尝试从当前时间生成（作为最后手段）
-        if (!timeOnly) {
-            const now = new Date();
-            timeOnly = now.toTimeString().split(' ')[0];
-        }
-        
-        // 从消息内容中移除时间戳（避免重复显示）
-        // 移除类似 "2025-11-05T17:55:06:" 或 "2025-11-05 17:55:06" 的格式
-        message = message.replace(/^\d{4}-\d{2}-\d{2}[T\s]\d{2}:\d{2}:\d{2}[:,]?\s*/g, '');
-        message = message.replace(/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}[,\s]*-?\s*/g, '');
-        message = message.trim();
-        
-        // 过滤空日志条目：如果消息为空或只包含空白字符，跳过不显示
-        if (!message || message.length === 0) {
-            return;
-        }
-        
-        // 处理分割线：如果消息是多个等号或减号，缩短为固定长度
-        if (/^[=\-]{10,}$/.test(message)) {
-            message = '════════════════════════════════';
-        }
-            
-            // 根据日志级别选择图标
-            let iconClass = 'fas fa-info-circle';
-        if (level === 'ERROR' || message.includes('错误') || message.includes('失败') || message.includes('❌')) {
-                iconClass = 'fas fa-exclamation-triangle';
-                logEntry.style.color = '#ff6b6b';
-        } else if (level === 'WARNING' || message.includes('警告') || message.includes('⚠️')) {
-                iconClass = 'fas fa-exclamation-circle';
-                logEntry.style.color = '#ffa500';
-            } else if (message.includes('BUY') || message.includes('买入') || message.includes('多仓')) {
-                iconClass = 'fas fa-arrow-up';
-                logEntry.style.color = '#51cf66';
-            } else if (message.includes('SELL') || message.includes('卖出') || message.includes('空仓')) {
-                iconClass = 'fas fa-arrow-down';
-                logEntry.style.color = '#ff6b6b';
-            } else if (message.includes('价格') || message.includes('BTC')) {
-                iconClass = 'fas fa-chart-line';
-            } else if (message.includes('持仓') || message.includes('仓位')) {
-                iconClass = 'fas fa-wallet';
-        } else if (message.includes('成功') || message.includes('完成') || message.includes('✅')) {
-                iconClass = 'fas fa-check-circle';
-                logEntry.style.color = '#51cf66';
-            }
-            
-            logEntry.innerHTML = `
-            <span class="log-time">${timeOnly}</span>
-                <i class="${iconClass}"></i>
-            <span class="log-message">${message}</span>
-        `;
-        
-        logContent.appendChild(logEntry);
-    });
-    
-    // 保持在顶部（最新日志可见）
-    const logContainer = document.querySelector('.log-container');
-    if (logContainer) {
-        logContainer.scrollTop = 0;
-    }
-    lastLogCount = logs.length;
-}
-
 // 页面卸载时清理
 window.addEventListener('beforeunload', function() {
     if (refreshInterval) {
@@ -1761,9 +1593,6 @@ window.addEventListener('beforeunload', function() {
     }
     if (runningTimeInterval) {
         clearInterval(runningTimeInterval);
-    }
-    if (tradingLogInterval) {
-        clearInterval(tradingLogInterval);
     }
     if (socket) {
         socket.disconnect();

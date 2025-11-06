@@ -56,8 +56,12 @@
 cd /
 git clone <repository> dsok  # 或直接上传项目到 /dsok 目录
 
-# 创建虚拟环境
 cd /dsok
+#按照所需的包
+sudo apt update
+sudo apt install python3.12-venv
+
+# 创建虚拟环境
 python3 -m venv venv
 
 # 激活虚拟环境
@@ -66,6 +70,10 @@ source venv/bin/activate
 # 安装依赖
 pip install -r requirements.txt
 
+#安装npm
+sudo apt update
+sudo apt install npm
+
 # 安装 PM2 (进程管理)
 npm install -g pm2
 
@@ -73,6 +81,7 @@ npm install -g pm2
 nano .env
 
 # 启动服务
+chmod +x start.sh
 ./start.sh
 ```
 
@@ -1313,7 +1322,7 @@ dsok/
 
 ```json
 {
-  "test_mode": false,                   // 测试模式：true=模拟交易，false=实盘交易
+  "test_mode": true,                    // 测试模式：true=模拟交易（默认），false=实盘交易
   "leverage": 10,                       // 杠杆倍数：1-125x，建议≤10x
   "timeframe": "5m",                    // 时间周期：5m/15m/1h/4h/1d
   "base_usdt_amount": 100,              // 基础投入金额（USDT）

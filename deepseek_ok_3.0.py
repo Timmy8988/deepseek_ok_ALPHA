@@ -686,8 +686,34 @@ def activate_context(ctx: ModelContext):
         initial_balance = prev_initial_balance
         ACTIVE_CONTEXT = prev_active_context
 
+# 全局 test_mode 函数 - 直接从配置文件读取
+def get_global_test_mode():
+    """从 bot_config.json 读取全局 test_mode 配置（每次调用都重新读取，确保获取最新值）"""
+    try:
+        bot_config_path = BASE_DIR / 'bot_config.json'
+        if bot_config_path.exists():
+            # 强制刷新文件系统缓存
+            import os
+            os.stat(bot_config_path)
+            
+            with open(bot_config_path, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+                test_mode = config.get('test_mode', True)
+                
+                if isinstance(test_mode, bool):
+                    return test_mode
+                elif isinstance(test_mode, str):
+                    return test_mode.lower() in ('true', '1', 'yes', 'on')
+                else:
+                    return bool(test_mode)
+        return True
+    except Exception as e:
+        print(f"⚠️ 读取test_mode配置失败: {e}，使用默认测试模式")
+        return True
+
 # 多交易对配置 - 支持6个交易对同时运行
 # 当前只启用 BTC-USDT，其他交易对已注释但保留配置
+# 注意：test_mode 已移除，统一使用全局配置
 TRADE_CONFIGS = {
     'BTC/USDT:USDT': {
         'display': 'BTC-USDT',
@@ -698,7 +724,7 @@ TRADE_CONFIGS = {
         'leverage_default': 10,
         'leverage_step': 1,
         'timeframe': '5m',
-        'test_mode': True,  # 初始测试模式
+        # test_mode 已移除，统一使用全局配置
         'data_points': 96,
         'analysis_periods': {
             'short_term': 20,
@@ -822,8 +848,8 @@ ARCHIVE_DIR = BASE_DIR / 'archives'
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
 DB_PATH = DATA_DIR / 'history.db'
-SIGNAL_FILE = BASE_DIR / 'latest_signal.json'
-AI_DECISIONS_FILE = BASE_DIR / 'ai_decisions.json'  # AI决策历史文件
+# 单进程模式优化：不再需要文件共享，直接使用内存数据
+# SIGNAL_FILE 和 AI_DECISIONS_FILE 已移除，web接口直接从内存获取数据
 
 # ==================== 模型上下文初始化 ====================
 
@@ -1379,21 +1405,12 @@ def append_signal_record(symbol: str, signal_data: Dict, entry_price: float, tim
     
     # 保存最新信号到文件，供 Web 界面使用
     try:
-        latest_signal = {
-            'symbol': symbol,
-            'signal': record['signal'],
-            'confidence': record['confidence'],
-            'timestamp': record['timestamp'],
-            'entry_price': entry_price,
-            'reason': record.get('reason'),
-            'stop_loss': record.get('stop_loss'),
-            'take_profit': record.get('take_profit')
-        }
-        with open(SIGNAL_FILE, 'w', encoding='utf-8') as f:
-            json.dump(latest_signal, f, ensure_ascii=False, indent=2)
+        # 单进程模式优化：不再需要文件保存，数据已存在于内存中
+        # 文件保存已移除，web接口直接从内存获取数据
+        pass
     except Exception as e:
-        # 保存失败不影响主流程，只打印警告
-        print(f"⚠️ 保存最新信号到文件失败: {e}")
+        # 保存失败不影响主流程
+        pass
     
     return record
 
@@ -1698,30 +1715,40 @@ class HistoryStore:
     # ---- 存档与导出 ----
     def compress_day(self, day):
         """将指定日期的数据导出为 Excel"""
-        day_str = day.strftime('%Y-%m-%d')
-        start = f"{day_str} 00:00:00"
-        end = f"{day_str} 23:59:59"
+        try:
+            day_str = day.strftime('%Y-%m-%d')
+            start = f"{day_str} 00:00:00"
+            end = f"{day_str} 23:59:59"
 
-        with self._get_conn() as conn:
-            rows = conn.execute(
-                """
-                SELECT model, timestamp, total_equity, available_balance, unrealized_pnl, currency
-                FROM balance_history
-                WHERE timestamp BETWEEN ? AND ?
-                ORDER BY model, timestamp
-                """,
-                (start, end)
-            ).fetchall()
+            with self._get_conn() as conn:
+                rows = conn.execute(
+                    """
+                    SELECT model, timestamp, total_equity, available_balance, unrealized_pnl, currency
+                    FROM balance_history
+                    WHERE timestamp BETWEEN ? AND ?
+                    ORDER BY model, timestamp
+                    """,
+                    (start, end)
+                ).fetchall()
 
-        if not rows:
+            if not rows:
+                return False
+
+            df = pd.DataFrame([dict(row) for row in rows])
+            output_path = ARCHIVE_DIR / f"balances-{day.strftime('%Y%m%d')}.xlsx"
+            df.to_excel(output_path, index=False)
+            self._update_last_archive_date(day)
+            self.last_archive_date = day
+            return True
+        except ImportError as e:
+            if 'openpyxl' in str(e).lower():
+                logger.warning(f"⚠️ 历史数据压缩功能需要安装 openpyxl: pip install openpyxl>=3.1.0")
+            else:
+                logger.warning(f"⚠️ 历史数据压缩失败: {e}")
             return False
-
-        df = pd.DataFrame([dict(row) for row in rows])
-        output_path = ARCHIVE_DIR / f"balances-{day.strftime('%Y%m%d')}.xlsx"
-        df.to_excel(output_path, index=False)
-        self._update_last_archive_date(day)
-        self.last_archive_date = day
-        return True
+        except Exception as e:
+            logger.warning(f"⚠️ 历史数据压缩失败: {e}")
+            return False
 
     def compress_if_needed(self, current_dt: datetime):
         """每日零点后压缩前一日数据"""
@@ -1733,23 +1760,28 @@ class HistoryStore:
         self.compress_day(target_day)
 
     def export_range_to_excel(self, start_date: str, end_date: str, output_path: Path, models: Optional[List[str]] = None):
-        models = models or MODEL_ORDER
-        with self._get_conn() as conn:
-            placeholder = ",".join("?" for _ in models)
-            query = f"""
-                SELECT model, timestamp, total_equity, available_balance, unrealized_pnl, currency
-                FROM balance_history
-                WHERE model IN ({placeholder}) AND timestamp BETWEEN ? AND ?
-                ORDER BY timestamp ASC
-            """
-            rows = conn.execute(query, (*models, start_date, end_date)).fetchall()
+        try:
+            models = models or MODEL_ORDER
+            with self._get_conn() as conn:
+                placeholder = ",".join("?" for _ in models)
+                query = f"""
+                    SELECT model, timestamp, total_equity, available_balance, unrealized_pnl, currency
+                    FROM balance_history
+                    WHERE model IN ({placeholder}) AND timestamp BETWEEN ? AND ?
+                    ORDER BY timestamp ASC
+                """
+                rows = conn.execute(query, (*models, start_date, end_date)).fetchall()
 
-        if not rows:
-            raise ValueError("选定时间范围内没有历史数据可导出。")
+            if not rows:
+                raise ValueError("选定时间范围内没有历史数据可导出。")
 
-        df = pd.DataFrame([dict(row) for row in rows])
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        df.to_excel(output_path, index=False)
+            df = pd.DataFrame([dict(row) for row in rows])
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            df.to_excel(output_path, index=False)
+        except ImportError as e:
+            if 'openpyxl' in str(e).lower():
+                raise ImportError("导出 Excel 功能需要安装 openpyxl: pip install openpyxl>=3.1.0") from e
+            raise
 
     def get_latest_before(self, model: str, timestamp: str):
         with self._get_conn() as conn:
@@ -2576,6 +2608,9 @@ def execute_trade(symbol, signal_data, price_data, config):
     """执行交易 - OKX版本（多交易对+动态杠杆+动态资金）"""
     global web_data
 
+    # 统一使用全局 test_mode 配置
+    test_mode = get_global_test_mode()
+
     current_position = get_current_position(symbol)
 
     print(f"[{config['display']}] 交易信号: {signal_data.get('signal')}")
@@ -2584,6 +2619,7 @@ def execute_trade(symbol, signal_data, price_data, config):
     print(f"[{config['display']}] 止损: {format_currency(signal_data.get('stop_loss'))}")
     print(f"[{config['display']}] 止盈: {format_currency(signal_data.get('take_profit'))}")
     print(f"[{config['display']}] 当前持仓: {current_position}")
+    print(f"[{config['display']}] 交易模式: {'测试模式' if test_mode else '实盘模式'}")
 
     # 🆕 新策略：有持仓时不开新仓，只等待平仓机会；空仓时才能开仓
     if current_position:
@@ -2601,7 +2637,7 @@ def execute_trade(symbol, signal_data, price_data, config):
         if signal == 'BUY' and current_side == 'short':
             # 空仓时收到BUY信号，平空仓
             print(f"[{config['display']}] 📉 收到BUY信号，平空仓...")
-            if not config['test_mode']:
+            if not test_mode:
                 try:
                     close_contracts = float(current_position.get('size', 0) or 0)
                     base_token = symbol.split('/')[0]
@@ -2621,7 +2657,7 @@ def execute_trade(symbol, signal_data, price_data, config):
         elif signal == 'SELL' and current_side == 'long':
             # 多仓时收到SELL信号，平多仓
             print(f"[{config['display']}] 📈 收到SELL信号，平多仓...")
-            if not config['test_mode']:
+            if not test_mode:
                 try:
                     close_contracts = float(current_position.get('size', 0) or 0)
                     base_token = symbol.split('/')[0]
@@ -2649,11 +2685,11 @@ def execute_trade(symbol, signal_data, price_data, config):
         return
 
     # 风险管理：低信心信号不执行
-    if signal_data['confidence'] == 'LOW' and not config['test_mode']:
+    if signal_data['confidence'] == 'LOW' and not test_mode:
         print(f"[{config['display']}] ⚠️ 低信心信号，跳过执行")
         return
 
-    if config['test_mode']:
+    if test_mode:
         print(f"[{config['display']}] 测试模式 - 仅模拟交易")
         return
 
@@ -3226,55 +3262,7 @@ def run_symbol_cycle(symbol, config):
             if len(ctx.web_data['symbols'][symbol]['ai_decisions']) > 50:
                 ctx.web_data['symbols'][symbol]['ai_decisions'].pop(0)
             
-            # 调试信息
-            total_count = len(ctx.web_data['symbols'][symbol]['ai_decisions'])
-            print(f"[{config['display']}] ✅ AI决策已保存: signal={ai_decision['signal']}, confidence={ai_decision['confidence']}, 当前总数={total_count}")
-            print(f"[{config['display']}] 调试: ctx.web_data['symbols'] 的键: {list(ctx.web_data.get('symbols', {}).keys())}")
-            print(f"[{config['display']}] 调试: {symbol} 的 ai_decisions 长度: {total_count}")
-            if total_count > 0:
-                print(f"[{config['display']}] 调试: 最新一条决策: signal={ctx.web_data['symbols'][symbol]['ai_decisions'][-1].get('signal')}, timestamp={ctx.web_data['symbols'][symbol]['ai_decisions'][-1].get('timestamp')}")
-            
-            # 保存AI决策到文件（用于跨进程访问，参考alpha项目）
-            try:
-                # 获取当前上下文的model_key
-                current_model_key = ctx.key
-                
-                # 读取现有数据
-                ai_decisions_data = {}
-                if AI_DECISIONS_FILE.exists():
-                    try:
-                        with open(AI_DECISIONS_FILE, 'r', encoding='utf-8') as f:
-                            ai_decisions_data = json.load(f)
-                    except (json.JSONDecodeError, IOError):
-                        ai_decisions_data = {}
-                
-                # 确保结构存在
-                if 'decisions' not in ai_decisions_data:
-                    ai_decisions_data['decisions'] = {}
-                if current_model_key not in ai_decisions_data['decisions']:
-                    ai_decisions_data['decisions'][current_model_key] = {}
-                if symbol not in ai_decisions_data['decisions'][current_model_key]:
-                    ai_decisions_data['decisions'][current_model_key][symbol] = []
-                
-                # 添加新决策
-                ai_decisions_data['decisions'][current_model_key][symbol].append(ai_decision)
-                
-                # 限制每个交易对的决策数量（最多保留100条）
-                if len(ai_decisions_data['decisions'][current_model_key][symbol]) > 100:
-                    ai_decisions_data['decisions'][current_model_key][symbol] = ai_decisions_data['decisions'][current_model_key][symbol][-100:]
-                
-                # 保存到文件
-                with open(AI_DECISIONS_FILE, 'w', encoding='utf-8') as f:
-                    json.dump(ai_decisions_data, f, ensure_ascii=False, indent=2)
-                
-                print(f"[{config['display']}] ✅ AI决策已保存到文件: {AI_DECISIONS_FILE} (模型: {current_model_key}, 交易对: {symbol})")
-            except Exception as e:
-                print(f"[{config['display']}] ⚠️ 保存AI决策到文件失败: {e}")
-                import traceback
-                traceback.print_exc()
-            
-            # 同时更新全局 web_data（保持兼容性）
-            web_data = ctx.web_data
+            # 单进程模式：AI决策已存储在内存中，web接口可直接从 ctx.web_data 读取
 
         # 4. 执行交易
         print(f"[{config['display']}] 💼 准备执行交易...")
@@ -3291,6 +3279,7 @@ def run_symbol_cycle(symbol, config):
 
 def run_all_symbols_parallel(model_display: str):
     """并行执行所有交易对（针对单个模型上下文）"""
+    
     print("\n" + "="*70)
     print(f"🚀 [{model_display}] 开始新一轮分析 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("="*70)
@@ -3340,11 +3329,12 @@ def main():
     print(f"交易对列表: {', '.join([c['display'] for c in TRADE_CONFIGS.values()])}")
     print("="*70 + "\n")
 
-    test_mode_count = sum(1 for c in TRADE_CONFIGS.values() if c.get('test_mode', True))
-    if test_mode_count > 0:
-        print(f"⚠️  {test_mode_count}/{len(TRADE_CONFIGS)} 个交易对处于测试模式")
+    # 检查全局 test_mode 配置
+    global_test_mode = get_global_test_mode()
+    if global_test_mode:
+        print(f"⚠️  全局测试模式已启用（所有交易对）")
     else:
-        print("🔴 实盘交易模式 - 请谨慎操作！")
+        print("🔴 全局实盘交易模式 - 请谨慎操作！")
 
     print("\n初始化各模型的 OKX 账户...")
     for model_key in MODEL_ORDER:
